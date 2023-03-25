@@ -1,0 +1,70 @@
+<div class="px-4 py-5 my-5 text-center">
+  <h1 class="display-5 fw-bold">Make a Blog</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead">Are you tired of screaming into the void about your anime opinions? It's time to start your own
+      blog and let your voice be heard!</p>
+
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <% if(infoSucessObj != '') {%>
+  <div class="col-8 alert alert-success" role="alert">
+    <%= infoSucessObj%>
+  </div>
+  <%}%>
+  <% if(infoErrorObj != '') {%>
+  <div class="col-8 alert alert-danger" role="alert">
+    <%= infoErrorObj[0].errors.name.properties.message + " - " + infoErrorObj[0].errors.name.properties.path  %>
+  </div>
+  <%}%>
+  <% if(fileNotUpload != '') {%>
+  <div class="col-8 alert alert-danger" role="alert">
+    <%= fileNotUpload  %>
+  </div>
+  <%}%>
+    <div class="col-8">
+        <form action="/create-blog" enctype="multipart/form-data" method="post">
+            <div class="row g-3">
+                <div class="col-12">
+                    <label for="name" class="form-label">Blog Name</label>
+                    <input type="text" name="name" id="name" class="form-control">
+                </div>
+                <div class="col-12">
+                    <label for="description" class="form-label">Blog Description</label>
+                    <textarea name="description" id="description" rows="4" cols="30" class="form-control"></textarea>
+                </div>
+                <div class="col-12">
+                    <label for="usesrname" class="form-label">Username</label>
+                    <input type="text" name="usesrname" id="usesrname" class="form-control">
+                </div>
+                <div class="col-12">
+                    <label for="rating" class="form-label">Ratings</label>
+                        <input type="range" name="ratings" min="0" max="10" value="0" oninput="rangeValue.innerText = this.value" class="form-control">
+                        <p id="rangeValue"   class="form-control g-2 mt-4">0</p>
+                </div>
+                <div class="col-12">
+                    <label for="categories" class="form-label">Category</label>
+                    <select name="category" id="catrgory" class="form-select form-control">
+                        <option selected>Select Categories</option>
+                        <option value="SHOUNEN">Shounen</option>
+                        <option value="SHOUJO">Shoujo</option>
+                        <option value="JOSEI">Josei</option>
+                        <option value="SEINEN">Seinen</option>
+                        <option value="ACTION">Action</option>
+                        <option value="CHARACTER">Character</option>
+                    </select>
+                    <!-- ["SHOUJO", "SHOUNEN", "JOSEI", "SEINEN", "ACTION"] -->
+                    <!-- <input type="text" name="categories" id="categories"> -->
+                </div>
+                <div class="col-12">
+                    <label for="image" class="form-label">Blog Image</label>
+                    <input type="file" name="image" id="image" class="form-control" accept="image/*">
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Make A Blog!</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
